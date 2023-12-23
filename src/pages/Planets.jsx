@@ -3,15 +3,12 @@ import { getData } from '../api/getApiData';
 import { useQuery } from '@tanstack/react-query';
 import View from '../components/Layout/View';
 
-const Films = () => {
+const Planets = () => {
   const {
     status,
     error,
-    data: films,
-  } = useQuery({
-    queryKey: ['films'],
-    queryFn: () => getData('films'),
-  });
+    data: planets,
+  } = useQuery({ queryKey: ['planets'], queryFn: () => getData('planets') });
 
   return status === 'pending' ? (
     <Loader />
@@ -20,10 +17,8 @@ const Films = () => {
       Error: {error.message}
     </div>
   ) : (
-    <div className='w-full'>
-      <View info={films} />
-    </div>
+    <View info={planets} />
   );
 };
 
-export default Films;
+export default Planets;

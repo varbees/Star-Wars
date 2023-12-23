@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import RightArrow from '../assets/icons/RightArrow.svg';
 import UpArrow from '../assets/icons/UpArrow.svg';
 import FilmReel from '../assets/icons/FilmReel.svg';
 import { FaFolder } from 'react-icons/fa';
 
 const Accordian = () => {
+  const navigate = useNavigate();
   const sections = [
     {
       name: 'Films',
@@ -28,10 +30,11 @@ const Accordian = () => {
 
   const handleSectionClick = name => {
     setOpenSection(prevName => (prevName === name ? null : name));
+    navigate(`/${name.toLowerCase()}`);
   };
 
   return (
-    <div className='hidden sm:block w-[200px] sm:w-[250px] md:w-[300px] h-screen text-white text-medium text-sm md:text-base py-2.5 pl-4 pr-3.5 font-medium duration-500'>
+    <div className='hidden sticky top-0 left-0 sm:block w-[200px] sm:w-[250px] md:w-[300px] h-screen text-white text-medium text-sm md:text-base py-2.5 pl-4 pr-3.5 font-medium duration-500'>
       {sections.map((section, i) => (
         <div key={i}>
           <div
